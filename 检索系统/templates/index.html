@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+</head>
+<body>
+
+<nav style="margin-bottom: 0px" class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+    <div class="navbar-header">
+        <p class="navbar-brand" style="font-size: 30px;height:43px">欢迎来到小型数据检索系统！！！<small style="position:absolute;right:0px">今天是&nbsp{{nowtimestr}}</small></p>
+    </div>
+</nav>
+
+<img src="/static/1.jpg" class="img-rounded" width="1700" height="300">
+<form role="form" method="post">
+
+  <div class="form-group">
+    <label for="inputfile" style="font-size:25px">请选择检索类别</label>
+     <select class="form-control" name="type">
+      <option value="journal1">期刊</option>
+      <option value="degree">硕博</option>
+    </select>
+  </div>
+
+     <div class="form-group">
+    <label for="name" style="font-size:25px">请输入</label>
+    <input type="text" name="content" class="form-control" id="name" placeholder="请输入内容">
+     </div>
+<label for="name" style="font-size:25px">选择检索条件</label>
+    <div>
+        <div class="radio">
+    <label>
+        <input type="radio" name="optionsRadios" id="optionsRadios1" value="中文题名" checked> 主题
+    </label>
+</div>
+
+    <div class="radio">
+    <label>
+        <input type="radio" name="optionsRadios" id="optionsRadios2" value="作者">作者
+    </label>
+</div>
+    <div class="radio">
+    <label>
+        <input type="radio" name="optionsRadios" id="optionsRadios3" value="时间">年份
+    </label>
+</div>
+    </div>
+  <button type="submit" class="btn btn-default">查询</button>
+</form>
+
+
+{%if data%}
+<table class="table">
+                {%if journalFields%}
+                <thead>
+                    <th>
+                        {{journalFields[0]}}
+                    </th>
+                    <th>
+                        {{journalFields[1]}}
+                    </th>
+                    <th>
+                        {{journalFields[3]}}
+                    </th>
+                    <th>
+                        {{journalFields[4]}}
+                    </th>
+                    <th>
+                        {{journalFields[6]}}
+                    </th>
+                    <th>
+                        {{journalFields[7]}}
+                    </th>
+                    <th>
+                        {{journalFields[8]}}
+                    </th>
+                </thead>
+				<tbody>
+                    {%for items in data%}
+					<tr>
+
+                        <td>
+							{{items[0]}}
+						</td>
+						<td><a href="http://{{items[2]}}">
+							{{items[1]}}</a>
+						</td>
+                        <td>
+							{{items[3]}}
+						</td>
+                        <td><a href="http://{{items[5]}}">
+                        {{items[4]}}</a>
+						</td>
+                        <td>
+							{{items[6]}}
+						</td>
+                        <td>
+							{{items[7]}}
+						</td>
+                        <td>
+							{{items[8]}}
+						</td>
+					</tr>
+                {%endfor%}
+                </tbody>
+                    {%else%}
+                     <thead>
+                     <th>
+                        {{degreeFields[0]}}
+                    </th>
+                    <th>
+                        {{degreeFields[1]}}
+                    </th>
+                     <th>
+                        {{degreeFields[2]}}
+                    </th>
+                    <th>
+                        {{degreeFields[3]}}
+                    </th>
+                    <th>
+                        {{degreeFields[4]}}
+                    </th>
+                     <th>
+                        {{degreeFields[5]}}
+                    </th>
+                    <th>
+                        {{degreeFields[6]}}
+                    </th>
+                    <th>
+                        {{degreeFields[7]}}
+                    </th>
+
+                </thead>
+				<tbody>
+                    {%for items in data%}
+		             <tr>
+                          {%for item in items%}
+                         <td>
+                             {{item}}
+                         </td>
+                         {%endfor%}
+                     </tr>
+					{%endfor%}
+				</tbody>
+                {%endif%}
+			</table>
+{%endif%}
+<!--{%if degreelFields%}-->
+<!--<table class="table">-->
+                <!--<thead>-->
+                    <!--{%for i in journalFields%}-->
+                    <!--<th>-->
+                        <!--{{i}}-->
+                    <!--</th>-->
+                <!--{%endfor%}-->
+                <!--</thead>-->
+				<!--<tbody>-->
+                    <!--{%for items in data%}-->
+					<!--<tr>-->
+                        <!--{%for item in items%}-->
+                        <!--<td>-->
+							<!--{{item}}-->
+						<!--</td>-->
+                        <!--{%endfor%}-->
+                    <!--</tr>-->
+					<!--{%endfor%}-->
+				<!--</tbody>-->
+			<!--</table>-->
+<!--{%endif%}-->
+</body>
+</html>
