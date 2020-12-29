@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% block title %}Flasky - Login{% endblock %}
+{% block page_content %}
+{% import "bootstrap/wtf.html" as wtf %}
+<div class="page-header">
+    <h1>欢迎您，{{name}}</h1>
+</div>
+<div style="float:left;width:500px">
+    <img src="/static/a.jpg" height="250px" width="250px">
+</div>
+<div>
+<table class="table" style="float:right;width:500px">
+				<thead>
+					<tr>
+						<th>
+							学号
+						</th>
+						<th>
+							姓名
+						</th>
+						<th>
+							性别
+						</th>
+						<th>
+							楼号
+						</th>
+                        <th>
+							宿舍号
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							{{stunum}}
+						</td>
+						<td>
+							{{name}}
+						</td>
+						<td>
+							{{gender}}
+						</td>
+						<td>
+							{{buildingnum}}
+						</td>
+                        <td>
+							{{domitorynum}}
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="{{ url_for('auth.revise') }}">修改</a>
+						</td>
+						<td>
+							<a href="{{ url_for('auth.revise') }}">修改</a>
+						</td>
+						<td>
+							<a href="{{ url_for('auth.revise') }}">修改</a>
+						</td>
+						<td>
+							<a href="{{ url_for('auth.revise') }}">修改</a>
+						</td>
+                        <td>
+							<a href="{{ url_for('auth.revise') }}">修改</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+{%if rst%}
+<table class="table" style="float:right;width:500px">
+				<thead>
+					<tr>
+						<th>
+							学号
+						</th>
+						<th>
+							姓名
+						</th>
+						<th>
+							性别
+						</th>
+						<th>
+							楼号
+						</th>
+                        <th>
+							宿舍号
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+				{%for item in rst%}
+					<tr>
+						<td>
+							{{item.stunum}}
+						</td>
+						<td>
+							{{item.username}}
+						</td>
+						<td>
+							{{item.gender}}
+						</td>
+						<td>
+							{{item.buildingnum}}
+						</td>
+                        <td>
+							{{item.domitorynum}}
+						</td>
+					</tr>
+				{%endfor %}
+				</tbody>
+			</table>
+{%endif%}
+<div class="col-md-4">
+    {{ wtf.quick_form(form) }}
+</div>
+{%endblock%}
